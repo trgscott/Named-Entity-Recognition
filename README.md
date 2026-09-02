@@ -1,11 +1,4 @@
-# LELA60332_Coursework
-
-<h3 align="center">Computational Linguistics 2</h3>
-
-  <p align="center">
-    Named Entity Recognition Assignment
-  </p>
-</div>
+# Named Entity Recognition with BERT (encoder-only) and T5-Small (encoder-decoder)
 
 <!-- ABOUT THE PROJECT -->
 ## About The Project
