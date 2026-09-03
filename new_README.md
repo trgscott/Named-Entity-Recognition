@@ -5,7 +5,7 @@ This project trains and evaluates two Named Entity Recognition (NER) systems on 
 - **BERT-Base Cased**, an encoder-only model with a token-classification head.
 - **T5-Small**, an encoder-decoder model trained with word-level prompting.
 
-The script supports both the seven-label entity-tagging task and a three-label version. It reports token-level accuracy, per-label precision/recall/F1 where implemented, macro F1, micro F1 for BERT, and span accuracy. A span is counted as correct only when every label in the sentence is predicted correctly. The random seed defaults to 42.
+The script supports both seven-label entity-tagging and a three-label B/I/O version. It reports token-level accuracy, per-label precision/recall/F1 where implemented, macro F1, micro F1 for BERT, and span accuracy. A span is counted as correct only when every label in the sentence is predicted correctly. The random seed defaults to 42.
 
 ## Requirements
 
@@ -35,7 +35,7 @@ Internet access is therefore required for the first data/model download.
 
 ## Usage
 
-Run commands from the `CL2` directory:
+Run commands:
 
 ```sh
 python NER.py --model bert --labels 7
@@ -51,7 +51,7 @@ The default settings are:
 - Seed: 42
 - Device: automatically selected as `mps`, `cuda`, or `cpu`
 
-For a quick smoke test, limit the number of sentences in every split and train for one epoch:
+For a quick test, limit the number of sentences in every split (via --max-examples) and train for one epoch:
 
 ```sh
 python NER.py --model bert --labels 3 --epochs 1 --max-examples 4 --device mps
@@ -101,7 +101,7 @@ The best model encountered during training is saved beside `NER.py` as one of:
 
 Evaluation results are written to the path supplied by `--metrics-path`, which defaults to `ner_metrics.csv`. The CSV contains the model, label count, dataset (`dev`, `test`, or `ood`), label, metric, and value columns.
 
-The `ood` results are calculated on the UniversalNER English PUD test split, while the regular test results use the English EWT test split.
+The `ood` out of domain results are calculated on the UniversalNER English PUD test split, while the regular test results use the English EWT test split.
 
 ## Reproducibility notes
 
